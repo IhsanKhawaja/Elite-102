@@ -9,7 +9,7 @@ def check(ID):
         print(item)
 
 def create(name, balance, admin, cred):
-    addData = ("INSERT INTO bank_system (Name, Balance, Admin, Credit) VALUES(" + name + "," + balance + "," + admin +"," + cred + ")")
+    addData = (f"INSERT INTO bank_system (Name, Balance, Admin, Credit) VALUES( {name}, {balance}, {admin}, {cred})")
     cursor.execute(addData)
     connection.commit()
 
@@ -20,6 +20,5 @@ def show():
         print(item)
 
 show()
-create('Gary', '5000', 'False', '200')
 
 connection.close()
