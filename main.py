@@ -1,3 +1,25 @@
-#import mysql.connector
-#connection = mysql.connector.connect(user = "root", database = "player_info", password = "PocketWizard1!")
-#connection.closplayer_info
+import mysql.connector
+connection = mysql.connector.connect(user = 'root', database = 'banking', password = 'PocketWizard1!')
+cursor = connection.cursor()
+
+def check(ID):
+    Query = (f"SELECT Balance FROM bank_system Where ID = {ID}")
+    cursor.execute(Query)
+    for item in cursor:
+        print(item)
+
+def create(name, balance, admin, cred):
+    addData = ("INSERT INTO bank_system (Name, Balance, Admin, Credit) VALUES(" + name + "," + balance + "," + admin +"," + cred + ")")
+    cursor.execute(addData)
+    connection.commit()
+
+def show():
+    testQuery = ("SELECT * FROM bank_system")
+    cursor.execute(testQuery)
+    for item in cursor:
+        print(item)
+
+show()
+create('Gary', '5000', 'False', '200')
+
+connection.close()
