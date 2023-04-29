@@ -37,7 +37,9 @@ def get_name(ID):
     for item in cursor:
         return item
 
-ID = input("Welcome to your banking server!\nTo continue, please enter your User ID or create a new account (CA): ")
+print("Welcome to your banking server! Here are the following accounts-")
+show()
+ID = input(f"To continue, please enter your User ID or create a new account (CA): ")
 Name = None
 while True:
     if(ID == "CA"):
@@ -60,15 +62,17 @@ while True:
         print("User ID doesn't exist")
     ID = input("Please enter a new ID or create a new account (CA): ")
 
-print()
+print("\nCB - check balance\nCC - check credit score\nexit - quit the program\nhelp - print out all the commands\n")
 
 while(True):
     response = input("What would you like to do?\n").upper()
     if (response == "EXIT"):
         break
     elif (response == "CB"):
-        print(f"your balance is ${str(check_balance(ID))[1:-2]}")
+        print(f"your balance is ${str(check_balance(ID))[1:-2]}\n")
     elif (response == "CC"):
-        print(f"you have a credit score of {str(check_cred(ID))[1:-2]}")
+        print(f"you have a credit score of {str(check_cred(ID))[1:-2]}\n")
+    elif(response == "HELP"):
+        print("\nCB - check balance\nCC - check credit score\nexit - quit the program\nhelp - print out all the commands\n")
 
 connection.close()
