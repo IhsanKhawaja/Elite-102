@@ -39,7 +39,7 @@ def get_name(ID):
 
 print("Welcome to your banking server! Here are the following accounts-")
 show()
-ID = input(f"To continue, please enter your User ID or create a new account (CA): ")
+ID = input(f"To continue, please enter your User ID or create a new account (CA): ").upper()
 Name = None
 while True:
     if(ID == "CA"):
