@@ -36,6 +36,15 @@ def get_name(ID):
     cursor.execute(Query)
     for item in cursor:
         return item
+    
+def update_balance(ID, Extra):
+    Update = (f"UPDATE bank_system SET Balance = Balance + {int(Extra)} WHERE ID = {ID};")
+    cursor.execute(Update)
+
+def update_credit(ID, Extra):
+    Update = (f"UPDATE bank_system SET Credit = Credit + {int(Extra)} WHERE ID = {ID};")
+    cursor.execute(Update)
+
 
 print("Welcome to your banking server! Here are the following accounts-")
 show()
@@ -62,7 +71,7 @@ while True:
         print("User ID doesn't exist")
     ID = input("Please enter a new ID or create a new account (CA): ")
 
-print("\nCB - check balance\nCC - check credit score\nexit - quit the program\nhelp - print out all the commands\n")
+print("\nCB - check balance\nCC - check credit score\nexit - quit the program\nhelp - print out all the commands\nUB - updates your balance with whatever value you enter\nUC - updates your Credit with whatever value you enter\n")
 
 while(True):
     response = input("What would you like to do?\n").upper()
@@ -72,7 +81,21 @@ while(True):
         print(f"your balance is ${str(check_balance(ID))[1:-2]}\n")
     elif (response == "CC"):
         print(f"you have a credit score of {str(check_cred(ID))[1:-2]}\n")
+    elif (response == "UB"):
+        response = input("Would you like to deposit or withdraw (d/w): ").upper()
+        if (response == "D"):
+            update_balance(ID, input("Enter the amount you would like to add: "))
+        else:
+            update_balance(ID, -int(input("Enter the amount you would like to Withdraw: ")))
+        print(f"your new balance is ${str(check_balance(ID))[1:-2]}\n")
+    elif (response == "UC"):
+        response = input("Is your credit score increasing or decreasing (i/d): ").upper()
+        if (response == "I"):
+            update_credit(ID, input("Enter the amount you would like to add: "))
+        else:
+            update_credit(ID, -int(input("Enter the amount you would like to reduce: ")))
+        print(f"you have a credit score of {str(check_cred(ID))[1:-2]}\n")
     elif(response == "HELP"):
-        print("\nCB - check balance\nCC - check credit score\nexit - quit the program\nhelp - print out all the commands\n")
+        print("\nCB - check balance\nCC - check credit score\nexit - quit the program\nhelp - print out all the commands\nUB - updates your balance with whatever value you enter\nUC - updates your Credit with whatever value you enter\n")
 
 connection.close()
