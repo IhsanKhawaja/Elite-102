@@ -94,7 +94,7 @@ while(True):
             update_credit(ID, input("Enter the amount you would like to add: "))
         else:
             update_credit(ID, -int(input("Enter the amount you would like to reduce: ")))
-        print(f"you have a credit score of {str(check_cred(ID))[1:-2]}\n")
+        print(f"your new credit score is {str(check_cred(ID))[1:-2]}\n")
     elif(response == "HELP"):
         print("\nCB - check balance\nCC - check credit score\nexit - quit the program\nhelp - print out all the commands\nUB - updates your balance with whatever value you enter\nUC - updates your Credit with whatever value you enter\n")
 
